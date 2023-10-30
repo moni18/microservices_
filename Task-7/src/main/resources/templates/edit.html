@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Update customer</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/admin/{id}(id=${customer.id})}" th:object="${customer}">
+  <label for="username">Edit username: </label>
+  <input type="text" th:field="*{username}" id="username"/>
+
+  <input type="hidden" th:if="${customer != null}" th:field="*{id}" th:value="${customer.id}"/>
+
+  <br/>
+
+  <label for="password">Edit password: </label>
+  <input type="text" th:field="*{password}" id="password"/>
+
+  <br/>
+
+  <label for="name">Edit name: </label>
+  <input type="text" th:field="*{name}" id="name"/>
+
+  <br/>
+
+  <label for="age">Edit age: </label>
+  <input type="text" th:field="*{age}" id="age"/>
+
+  <br/>
+  <label>Edit Roles:</label>
+
+  <div th:each="role : ${allRoles}">
+    <input type="checkbox" th:field="*{roles}" th:value="${role.id}" th:id="${'role_' + role.id}" th:name="roles"/>
+    <label th:for="${'role_' + role.id}" th:text="${role.role}"></label>
+  </div>
+
+  <input type="submit" value="Update!"/>
+</form>
+
+</body>
+</html>

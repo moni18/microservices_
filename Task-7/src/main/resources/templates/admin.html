@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+</head>
+<body>
+<h1>Admin Panel</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Username</th>
+        <th>Roles</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <tr th:each="customer : ${customer}">
+        <td th:text="${customer.id}"></td>
+        <td><a th:href="@{/admin/{id}(id=${customer.id})}" th:text="${customer.name}">User</a></td>
+        <td th:text="${customer.age}"></td>
+        <td th:text="${customer.username}"></td>
+        <td>
+            <ul>
+                <li th:each="role : ${customer.roles}" th:text="${role.role}"></li>
+            </ul>
+        </td>
+        <td><a th:href="@{/admin/{id}/edit(id=${customer.id})}">Edit</a></td>
+        <td><a th:href="@{/admin/{id}(id=${customer.id})}" th:method="delete">Delete</a></td>
+    </tr>
+</table>
+
+<a th:href="@{/admin/new}">Create New User</a>
+</body>
+</html>

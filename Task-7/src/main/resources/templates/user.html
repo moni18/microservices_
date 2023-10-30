@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+</head>
+<body>
+<h1>User Profile</h1>
+
+<p><strong>Name:</strong> <span th:text="${customer.getName()}">User Name</span></p>
+<p><strong>Age:</strong> <span th:text="${customer.getAge()}">User Age</span></p>
+<p><strong>Username:</strong> <span th:text="${customer.getUsername()}">User Username</span></p>
+
+
+<h2>Roles:</h2>
+<ul>
+    <li th:each="role : ${customer.getRoles()}" th:text="${role.getRole()}">Role Name</li>
+</ul>
+
+</body>
+</html>
